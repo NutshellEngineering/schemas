@@ -20,9 +20,11 @@
           },
           "description": {
             "type": "string"
-          }
+          },
+          "isbn13": {
+            "type": "string"
         },
-        "required": ["title", "author", "description"],
+        "required": ["title", "author", "description", "isbn13"],
         "additionalProperties": false
       }
     }
