@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "author": { "type": "string" },
+      "description": { "type": "string" },
+      "id": { "type": "string", "format": "uuid" },
+      "title": { "type": "string" }
+    },
+    "required": ["author", "description", "id", "title"]
+  }
+}
