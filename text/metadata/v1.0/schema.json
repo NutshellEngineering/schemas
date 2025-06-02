@@ -9,10 +9,6 @@
       "items": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
           "title": {
             "type": "string"
           },
@@ -23,7 +19,7 @@
             "type": "string"
           }
         },
-        "required": ["id", "title", "author", "description"],
+        "required": ["title", "author", "description"],
         "additionalProperties": false
       }
     }
