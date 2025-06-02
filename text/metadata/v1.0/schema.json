@@ -1,14 +1,33 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "author": { "type": "string" },
-      "description": { "type": "string" },
-      "id": { "type": "string", "format": "uuid" },
-      "title": { "type": "string" }
-    },
-    "required": ["author", "description", "id", "title"]
-  }
+  "$id": "https://nutshellengineering.github.io/schemas/text/metadata/v1.0/schema.json",
+  "title": "TextsMetadata",
+  "type": "object",
+  "properties": {
+    "texts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "title", "author", "description"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["texts"],
+  "additionalProperties": false
 }
