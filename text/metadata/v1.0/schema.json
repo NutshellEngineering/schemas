@@ -10,25 +10,48 @@
         "type": "object",
         "properties": {
           "title": {
+            "description": "The title of the work.",
             "type": "string"
           },
           "subtitle": {
             "type": "string"
           },
           "author": {
+            "description": "Name of the author or authors.",
             "type": "string"
           },
           "description": {
             "type": "string"
           },
           "isbn13": {
-            "type": "string"
+            "description": "13-digit ISBN code (starting with 978 or 979), including optional hyphens or spaces.",
+            "type": "string",
+            "pattern": "^97[89][-\\s]?\\d{1,5}[-\\s]?\\d{1,7}[-\\s]?\\d{1,7}[-\\s]?\\d$"
+          },
+          "categories": {
+            "description": "Hierarchical mapping of top-level categories to their subcategories and leaf entries.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "description": "Mapping of a subcategory name to an array of leaf category names.",
+              "additionalProperties": {
+                "type": "array",
+                "description": "List of leaf category strings under this subcategory.",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+              "minProperties": 1
+            },
+            "minProperties": 1
           },
           "required": [
             "title",
             "author",
             "description",
-            "isbn13"
+            "isbn13",
+            "categories"
           ],
           "additionalProperties": false
         }
