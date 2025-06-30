@@ -2,6 +2,7 @@
   "$id": "https://nutshellengineering.github.io/schemas/text/v1.0/schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Text",
+  "description": "A schema describing the structure of a Text resource, including metadata, content, and pedagogical elements.",
   "type": "object",
   "required": [
     "locale",
@@ -17,33 +18,52 @@
   ],
   "properties": {
     "locale": {
+      "description": "The IETF language tag for the text, e.g. 'en', 'en-GB', 'zh-Hant'.",
       "type": "string",
       "pattern": "^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{2,8})*$"
     },
     "title": {
+      "description": "The title of the work.",
       "type": "string"
     },
     "author": {
+      "description": "Name of the author or authors.",
       "type": "string"
     },
     "isbn10": {
+      "description": "10-digit ISBN code, including optional hyphens or spaces.",
       "type": "string",
       "pattern": "^\\d{1,5}[- ]?\\d{1,7}[- ]?\\d{1,7}[- ]?[\\dX]$"
     },
     "isbn13": {
+      "description": "13-digit ISBN code (starting with 978 or 979), including optional hyphens or spaces.",
       "type": "string",
       "pattern": "^97[89][-\\s]?\\d{1,5}[-\\s]?\\d{1,7}[-\\s]?\\d{1,7}[-\\s]?\\d$"
     },
-    "genres": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+    "categories": {
+      "description": "Hierarchical mapping of top-level categories to their subcategories and leaf entries.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "description": "Mapping of a subcategory name to an array of leaf category names.",
+        "additionalProperties": {
+          "type": "array",
+          "description": "List of leaf category strings under this subcategory.",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "minProperties": 1
+      },
+      "minProperties": 1
     },
     "description": {
+      "description": "A free-form textual description or synopsis of the work.",
       "type": "string"
     },
     "context": {
+      "description": "Contextual information sections about the text (e.g., historical or critical).",
       "type": "object",
       "required": [
         "title",
@@ -51,6 +71,7 @@
       ],
       "properties": {
         "title": {
+          "description": "Label for the context section, such as 'Historical Context' or 'Critical Context'.",
           "type": "string",
           "enum": [
             "Historical Context",
@@ -58,11 +79,13 @@
           ]
         },
         "text": {
+          "description": "The body of the contextual information.",
           "type": "string"
         }
       }
     },
     "summary": {
+      "description": "A sequence of summary sections outlining the main points of the text.",
       "type": "array",
       "minItems": 5,
       "maxItems": 8,
@@ -74,15 +97,18 @@
         ],
         "properties": {
           "title": {
+            "description": "Heading for this summary section.",
             "type": "string"
           },
           "text": {
+            "description": "Summary content for this section.",
             "type": "string"
           }
         }
       }
     },
     "exercises": {
+      "description": "An array of exercise sections, each containing a fixed number of questions.",
       "type": "array",
       "items": {
         "type": "object",
@@ -92,9 +118,11 @@
         ],
         "properties": {
           "section": {
+            "description": "Name or title of this exercise section.",
             "type": "string"
           },
           "questions": {
+            "description": "A list of exactly 24 multiple-choice questions for this section.",
             "type": "array",
             "minItems": 24,
             "maxItems": 24,
@@ -107,9 +135,11 @@
               ],
               "properties": {
                 "question": {
+                  "description": "The text of the question being asked.",
                   "type": "string"
                 },
                 "options": {
+                  "description": "An array of exactly four possible answer choices.",
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -118,6 +148,7 @@
                   "maxItems": 4
                 },
                 "correct-index": {
+                  "description": "Zero-based index indicating the correct option in the 'options' array.",
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 3
@@ -129,6 +160,7 @@
       }
     },
     "key-ideas": {
+      "description": "A set of three to eight key ideas extracted from the text.",
       "type": "array",
       "minItems": 3,
       "maxItems": 8,
@@ -140,15 +172,18 @@
         ],
         "properties": {
           "title": {
+            "description": "Heading of the key idea.",
             "type": "string"
           },
           "text": {
+            "description": "Explanatory text for the key idea.",
             "type": "string"
           }
         }
       }
     },
     "critical-response": {
+      "description": "A set of responses critically engaging with themes or arguments in the text.",
       "type": "array",
       "minItems": 5,
       "maxItems": 8,
@@ -160,9 +195,11 @@
         ],
         "properties": {
           "title": {
+            "description": "Heading of this critical response entry.",
             "type": "string"
           },
           "text": {
+            "description": "The body text of the critical response.",
             "type": "string"
           }
         }

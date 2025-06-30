@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Categories",
+  "description": "A mapping of top-level categories to their subcategory lists",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "description": "A mapping of subcategory names to an array of leaf category strings",
+    "additionalProperties": {
+      "type": "array",
+      "description": "List of leaf category names",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "minProperties": 1
+  },
+  "minProperties": 1
+}

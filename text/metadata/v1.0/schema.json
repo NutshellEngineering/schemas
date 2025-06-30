@@ -1,6 +1,6 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nutshellengineering.github.io/schemas/text/metadata/v1.0/schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "TextsMetadata",
   "type": "object",
   "properties": {
@@ -23,12 +23,20 @@
           },
           "isbn13": {
             "type": "string"
-        },
-        "required": ["title", "author", "description", "isbn13"],
-        "additionalProperties": false
+          },
+          "required": [
+            "title",
+            "author",
+            "description",
+            "isbn13"
+          ],
+          "additionalProperties": false
+        }
       }
-    }
-  },
-  "required": ["texts"],
-  "additionalProperties": false
+    },
+    "required": [
+      "texts"
+    ],
+    "additionalProperties": false
+  }
 }
