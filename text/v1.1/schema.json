@@ -261,7 +261,23 @@
           "type": "array",
           "minItems": 3,
           "maxItems": 8,
-          "items": { "$ref": "#/definitions/TextContent" },
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/TextContent" },
+              {
+                "properties": {
+                  "themes": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "Themes for this key idea section"
+                  }
+                }
+              }
+            ]
+          },
           "description": "3-8 thematic key idea sections (500-800 words each)"
         }
       }
