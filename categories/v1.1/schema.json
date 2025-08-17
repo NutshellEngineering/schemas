@@ -9,6 +9,10 @@
             "items": {
                 "type": "object",
                 "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -20,6 +24,10 @@
                         "items": {
                             "type": "object",
                             "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                },
                                 "name": {
                                     "type": "string"
                                 },
@@ -27,11 +35,11 @@
                                     "type": "string"
                                 }
                             },
-                            "required": ["name", "description"]
+                            "required": ["id", "name", "description"]
                         }
                     }
                 },
-                "required": ["name", "description"]
+                "required": ["id", "name", "description"]
             }
         }
     },
