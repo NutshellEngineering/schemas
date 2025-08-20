@@ -18,7 +18,7 @@
     "Metadata": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["title", "authors", "description", "subject", "themes", "locale", "publication-date", "isbn"],
+      "required": ["title", "authors", "description", "subject", "themes", "audience", "locale", "publication-date", "isbn"],
       "properties": {
         "title": {
           "type": "string",
@@ -55,6 +55,11 @@
           },
           "description": "1-5 themes from categories/themes.json"
         },
+        "audience": {
+          "type": "string",
+          "enum": ["General"],
+          "description": "Target audience, always 'General'"
+        },
         "locale": {
           "type": "string",
           "enum": ["en-gb"],
@@ -69,11 +74,6 @@
           "type": "string",
           "pattern": "^[0-9]{13}$",
           "description": "13-digit ISBN identifier"
-        },
-        "cover-image": {
-          "type": "string",
-          "format": "uri",
-          "description": "Optional cover image URL"
         },
         "content-warnings": {
           "type": "array",
@@ -100,7 +100,7 @@
     "Exercise": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["question", "options", "correct-answer", "difficulty"],
+      "required": ["question", "options", "correct-answer"],
       "properties": {
         "question": {
           "type": "string",
@@ -134,11 +134,6 @@
           "type": "string",
           "format": "uuid",
           "description": "UUID of the correct answer option"
-        },
-        "difficulty": {
-          "type": "string",
-          "enum": ["easy", "medium", "hard"],
-          "description": "Exercise difficulty level"
         }
       }
     },
@@ -154,8 +149,7 @@
         "text": {
           "type": "string",
           "minLength": 1,
-          "description": "Markdown-formatted content with double newline paragraph separation, 500-800 words, no links allowed",
-          "pattern": "^(?!.*\\[.*\\]\\(.*\\))(?!.*<.*>).*$"
+          "description": "Markdown-formatted content with double newline paragraph separation, 500-800 words, no links allowed"
         },
         "content-warnings": {
           "type": "array",
@@ -201,7 +195,8 @@
                       "minLength": 1
                     },
                     "description": "Themes for this summary section"
-                  }
+                  },
+                  "exercises": false
                 }
               }
             ]
