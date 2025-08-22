@@ -171,6 +171,11 @@
       "allOf": [
         { "$ref": "#/definitions/TextContent" },
         {
+          "properties": {
+            "exercises": false
+          }
+        },
+        {
           "description": "Quick summary of the entire text (500-800 words)"
         }
       ]
@@ -195,8 +200,7 @@
                       "minLength": 1
                     },
                     "description": "Themes for this summary section"
-                  },
-                  "exercises": false
+                  }
                 }
               }
             ]
