@@ -7,6 +7,10 @@
   "additionalProperties": false,
   "required": ["metadata", "quick-summary", "summary", "key-ideas"],
   "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
     "metadata": { "$ref": "#/definitions/Metadata" },
     "quick-summary": { "$ref": "#/definitions/QuickSummary" },
     "summary": { "$ref": "#/definitions/Summary" },
@@ -18,8 +22,14 @@
     "Metadata": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["title", "authors", "description", "subject", "themes", "audience", "locale", "publication-date", "isbn"],
+      "required": ["editors", "title", "authors", "description", "subject", "themes", "audience", "locale", "publication-date", "isbn"],
       "properties": {
+        "editors": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/Person" },
+          "description": "One or more editors of this educational content"
+        },
         "title": {
           "type": "string",
           "minLength": 1,
@@ -32,7 +42,7 @@
         "authors": {
           "type": "array",
           "minItems": 1,
-          "items": { "$ref": "#/definitions/Author" },
+          "items": { "$ref": "#/definitions/Person" },
           "description": "One or more authors of the text"
         },
         "description": {
@@ -85,7 +95,7 @@
         }
       }
     },
-    "Author": {
+    "Person": {
       "type": "object",
       "additionalProperties": false,
       "required": ["name"],
@@ -93,7 +103,7 @@
         "name": {
           "type": "string",
           "minLength": 1,
-          "description": "Author's full name"
+          "description": "Person's full name"
         }
       }
     },
