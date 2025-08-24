@@ -85,6 +85,10 @@
           "pattern": "^[0-9]{13}$",
           "description": "13-digit ISBN identifier"
         },
+        "chapters": {
+          "type": "number",
+          "description": "The number of chapters in the text."
+        },
         "content-warnings": {
           "type": "array",
           "items": {
@@ -160,6 +164,13 @@
           "type": "string",
           "minLength": 1,
           "description": "Markdown-formatted content with double newline paragraph separation, 500-800 words, no links allowed"
+        },
+        "chapter": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Identifies which chapters the summary section."
         },
         "content-warnings": {
           "type": "array",
