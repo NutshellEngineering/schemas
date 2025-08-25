@@ -22,7 +22,7 @@
     "Metadata": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["editors", "title", "authors", "description", "subject", "themes", "audience", "locale", "publication-date", "isbn"],
+      "required": ["editors", "title", "authors", "description", "subject", "themes", "audience", "locale", "publication-date", "isbn", "icon"],
       "properties": {
         "editors": {
           "type": "array",
@@ -96,6 +96,24 @@
             "minLength": 1
           },
           "description": "Content warnings from categories/content-warning.json (for books 1900+)"
+        },
+        "icon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "collection"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Icon name"
+            },
+            "collection": {
+              "type": "string",
+              "enum": ["phosphor", "lucide"],
+              "description": "Icon collection"
+            }
+          },
+          "description": "Icon for the text"
         }
       }
     },
