@@ -1,0 +1,116 @@
+{
+  "$id": "https://nutshellengineering.github.io/schemas/text/metadata/v1.1/schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TextsMetadata",
+  "type": "object",
+  "properties": {
+    "texts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The filename"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The title of the text"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "Optional subtitle of the text"
+          },
+          "authors": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/definitions/Person" },
+            "description": "One or more authors of the text"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A sentence describing the book"
+          },
+          "subject": {
+            "$ref": "#/definitions/Category",
+            "description": "Single subject from categories/subjects.json"
+          },
+          "themes": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 5,
+            "items": {
+              "$ref": "#/definitions/Category"
+            },
+            "description": "1-5 themes from categories/themes.json"
+          },
+          "audience": {
+            "type": "string",
+            "enum": ["General"],
+            "description": "Target audience, always 'General'"
+          },
+          "locale": {
+            "type": "string",
+            "enum": ["en-gb"],
+            "description": "Always en-gb"
+          },
+          "publication-date": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Earliest year of publication"
+          },
+          "isbn": {
+            "type": "string",
+            "pattern": "^[0-9]{13}$",
+            "description": "13-digit ISBN identifier"
+          }
+        },
+        "required": [
+          "filename",
+          "title",
+          "authors",
+          "description",
+          "subject",
+          "locale",
+          "isbn"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "definitions": {
+    "Person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Person's full name"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for this category"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Category name"
+        }
+      }
+    }
+  }
+}
