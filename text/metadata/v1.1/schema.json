@@ -4,6 +4,10 @@
   "title": "TextsMetadata",
   "type": "object",
   "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
     "texts": {
       "type": "array",
       "items": {
