@@ -70,6 +70,13 @@
             "type": "string",
             "pattern": "^[0-9]{13}$",
             "description": "13-digit ISBN identifier"
+          },
+          "content-warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Category"
+            },
+            "description": "Content warnings from categories/content-warning.json (for books 1900+)"
           }
         },
         "required": [
