@@ -200,7 +200,20 @@
         "chapter": {
           "type": "array",
           "items": {
-            "type": "number"
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type"],
+            "properties": {
+              "number": {
+                "type": "number",
+                "description": "Optional chapter number"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["chapter", "prologue", "introduction", "epilogue", "conclusion", "forward", "afterword"],
+                "description": "Type of chapter or section"
+              }
+            }
           },
           "description": "Identifies which chapters the summary section."
         },
