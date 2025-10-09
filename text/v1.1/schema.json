@@ -30,6 +30,11 @@
           "items": { "$ref": "#/definitions/Person" },
           "description": "One or more editors of this educational content"
         },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "An optional timestamp in RFC 3339 format, e.g. 2025-10-09T15:20:30Z"
+        },
         "title": {
           "type": "string",
           "minLength": 1,
