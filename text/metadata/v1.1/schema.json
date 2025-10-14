@@ -23,6 +23,17 @@
             "format": "date-time",
             "description": "An optional timestamp in RFC 3339 format, e.g. 2025-10-09T15:20:30Z"
           },
+          "availability": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+              "^(key-ideas|sections|major-characters|minor-characters)$": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "description": "Optional availability counts for different content types"
+          },
           "title": {
             "type": "string",
             "minLength": 1,
