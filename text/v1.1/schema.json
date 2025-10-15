@@ -215,7 +215,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["chapter", "prologue", "introduction", "epilogue", "conclusion", "forward", "afterword"],
+                "enum": ["chapter", "prologue", "introduction", "epilogue", "conclusion", "forward", "afterword", "act"],
                 "description": "Type of chapter or section"
               }
             }
