@@ -18,6 +18,16 @@
             "minLength": 1,
             "description": "The filename"
           },
+          "slug": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The URL slug"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "An optional timestamp in RFC 3339 format, e.g. 2025-10-09T15:20:30Z"
+          },
           "updated": {
             "type": "string",
             "format": "date-time",
@@ -97,12 +107,14 @@
         },
         "required": [
           "filename",
+          "slug",
           "title",
           "authors",
           "description",
           "subject",
           "locale",
-          "isbn"
+          "isbn",
+          "created"
         ],
         "additionalProperties": false
       },
