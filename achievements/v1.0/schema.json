@@ -1,0 +1,58 @@
+{
+  "$id": "https://nutshellengineering.github.io/schemas/achievements/v1.0/schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Achievements",
+  "description": "Schema for achievement definition files stored in S3.",
+  "type": "object",
+  "properties": {
+    "achievements": {
+      "type": "array",
+      "description": "List of achievement definitions in this theme file.",
+      "items": {
+        "type": "object",
+        "description": "Definition for a single achievement.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable identifier for the achievement (kebab-case)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name shown to users."
+          },
+          "description": {
+            "type": "string",
+            "description": "User-facing description of how the achievement is earned."
+          },
+          "theme": {
+            "type": "string",
+            "description": "Theme identifier this achievement belongs to (e.g., exploration)."
+          },
+          "rank": {
+            "type": "string",
+            "description": "Optional rank for theme meta-achievements (BRONZE, SILVER, GOLD)."
+          },
+          "trigger": {
+            "type": "string",
+            "description": "Short description of the triggering action or rule."
+          },
+          "restriction": {
+            "type": "string",
+            "description": "Access restriction level (NONE, TIER_1, REGION, UNAVAILABLE)."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "theme",
+          "trigger",
+          "restriction"
+        ]
+      }
+    }
+  },
+  "required": [
+    "achievements"
+  ]
+}
