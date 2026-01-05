@@ -39,6 +39,94 @@
           "restriction": {
             "type": "string",
             "description": "Access restriction level (NONE, TIER_1, REGION, UNAVAILABLE)."
+          },
+          "rule": {
+            "description": "Machine-readable rule metadata used to evaluate this achievement.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "triggerType": {
+                "type": "string",
+                "description": "Event type that can trigger this award.",
+                "enum": [
+                  "STEP_COMPLETED",
+                  "JOURNEY_CREATED",
+                  "THEME_AWARD"
+                ]
+              },
+              "stepTypes": {
+                "type": "array",
+                "description": "Applicable step types for step-completion triggers.",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "QUICK_SUMMARY",
+                    "SECTION",
+                    "CONTEXT",
+                    "MAJOR_CHARACTER",
+                    "MINOR_CHARACTER",
+                    "KEY_IDEAS",
+                    "EXERCISE",
+                    "CRITICISM"
+                  ]
+                }
+              },
+              "ladderGroup": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Identifier for ladder tiers (null for non-ladders).",
+                "enum": [
+                  "QUICK_SUMMARY",
+                  "KEY_IDEAS",
+                  "CHARACTERS",
+                  "CONTEXT",
+                  null
+                ]
+              },
+              "threshold": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "Progress threshold required to grant the award."
+              },
+              "progressUnit": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Unit of progress for this award.",
+                "enum": [
+                  "SUMMARIES",
+                  "KEY_IDEAS",
+                  "CHARACTERS",
+                  "CONTEXT_ENTRIES",
+                  "SUBJECTS",
+                  "THEMES",
+                  "EXPLORATION_ACHIEVEMENTS",
+                  null
+                ]
+              },
+              "distinctKey": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Distinct dimension for first-in awards.",
+                "enum": [
+                  "SUBJECT",
+                  "THEME",
+                  null
+                ]
+              }
+            },
+            "required": [
+              "triggerType"
+            ]
           }
         },
         "required": [
