@@ -1,0 +1,383 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutshellengineering.github.io/schemas/text/v1.2/schema.json",
+  "type": "object",
+  "title": "Text",
+  "description": "A schema describing the structure of a Text resource, including metadata, content, and pedagogical elements.",
+  "additionalProperties": false,
+  "required": ["metadata", "quick-summary", "summary", "key-ideas"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "metadata": { "$ref": "#/definitions/Metadata" },
+    "quick-summary": { "$ref": "#/definitions/QuickSummary" },
+    "summary": { "$ref": "#/definitions/Summary" },
+    "characters": { "$ref": "#/definitions/Characters" },
+    "context": { "$ref": "#/definitions/Context" },
+    "key-ideas": { "$ref": "#/definitions/KeyIdeas" }
+  },
+  "definitions": {
+    "Metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "editors", "title", "authors", "description", "subject", "themes", "audience", "locale", "publication-date", "isbn", "icon"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for this text (UUID)"
+        },
+        "editors": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/Person" },
+          "description": "One or more editors of this educational content"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "An optional timestamp in RFC 3339 format, e.g. 2025-10-09T15:20:30Z"
+        },
+        "updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "An optional timestamp in RFC 3339 format, e.g. 2025-10-09T15:20:30Z"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The title of the text"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Optional subtitle of the text"
+        },
+        "authors": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/Person" },
+          "description": "One or more authors of the text"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A sentence describing the book"
+        },
+        "subject": {
+          "$ref": "#/definitions/Category",
+          "description": "Single subject from categories/subjects.json"
+        },
+        "themes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/definitions/Category"
+          },
+          "description": "1-5 themes from categories/themes.json"
+        },
+        "audience": {
+          "type": "string",
+          "enum": ["General"],
+          "description": "Target audience, always 'General'"
+        },
+        "locale": {
+          "type": "string",
+          "enum": ["en-gb"],
+          "description": "Always en-gb"
+        },
+        "publication-date": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Earliest year of publication"
+        },
+        "isbn": {
+          "type": "string",
+          "pattern": "^[0-9]{13}$",
+          "description": "13-digit ISBN identifier"
+        },
+        "chapters": {
+          "type": "number",
+          "description": "The number of chapters in the text."
+        },
+        "content-warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Category"
+          },
+          "description": "Content warnings from categories/content-warning.json (for books 1900+)"
+        },
+        "icon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "collection"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Icon name"
+            },
+            "collection": {
+              "type": "string",
+              "enum": ["phosphor", "lucide"],
+              "description": "Icon collection"
+            }
+          },
+          "description": "Icon for the text"
+        }
+      }
+    },
+    "Person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Person's full name"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for this category"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Category name"
+        }
+      }
+    },
+    "Exercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "question", "options", "correct-answer"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for this exercise"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Exercise question"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "text"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier for this answer option"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Answer option text"
+              }
+            }
+          },
+          "description": "Exactly 4 answer options with UUIDs"
+        },
+        "correct-answer": {
+          "type": "string",
+          "format": "uuid",
+          "description": "UUID of the correct answer option"
+        }
+      }
+    },
+    "TextContent": {
+      "type": "object",
+      "required": ["id", "title", "text"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for this section"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Section title"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Markdown-formatted content with double newline paragraph separation, 500-800 words, no links allowed"
+        },
+        "chapter": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type"],
+            "properties": {
+              "number": {
+                "type": "number",
+                "description": "Optional chapter number"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["chapter", "prologue", "introduction", "epilogue", "conclusion", "forward", "afterword", "act"],
+                "description": "Type of chapter or section"
+              }
+            }
+          },
+          "description": "Identifies which chapters the summary section."
+        },
+        "content-warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Category"
+          },
+          "description": "Content warnings for this section"
+        },
+        "exercises": {
+          "type": "array",
+          "maxItems": 24,
+          "items": { "$ref": "#/definitions/Exercise" },
+          "description": "Up to 24 exercises for random selection"
+        }
+      }
+    },
+    "QuickSummary": {
+      "allOf": [
+        { "$ref": "#/definitions/TextContent" },
+        {
+          "properties": {
+            "exercises": false
+          }
+        },
+        {
+          "description": "Quick summary of the entire text (500-800 words)"
+        }
+      ]
+    },
+    "Summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sections"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for the summary collection"
+        },
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/TextContent" },
+              {
+                "properties": {
+                  "themes": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Category"
+                    },
+                    "description": "Themes for this summary section"
+                  }
+                }
+              }
+            ]
+          },
+          "description": "Summary sections divided by chapters/acts/parts (500-800 words each)"
+        }
+      }
+    },
+    "Characters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "major-characters": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/TextContent" },
+          "description": "Major characters with optional exercises"
+        },
+        "minor-characters": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/TextContent" },
+              {
+                "properties": {
+                  "exercises": false
+                }
+              }
+            ]
+          },
+          "description": "Minor characters without exercises"
+        }
+      }
+    },
+    "Context": {
+      "allOf": [
+        { "$ref": "#/definitions/TextContent" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["historical", "critical"],
+              "description": "Type of context: historical for books before 1950, critical for 1950+"
+            }
+          }
+        }
+      ],
+      "description": "Context section with type indicator (500-800 words)"
+    },
+    "KeyIdeas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sections"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier for the key ideas collection"
+        },
+        "sections": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 8,
+          "items": {
+            "allOf": [
+              { "$ref": "#/definitions/TextContent" },
+              {
+                "properties": {
+                  "themes": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Category"
+                    },
+                    "description": "Themes for this key idea section"
+                  }
+                }
+              }
+            ]
+          },
+          "description": "3-8 thematic key idea sections (500-800 words each)"
+        }
+      }
+    }
+  }
+}
