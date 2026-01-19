@@ -1,6 +1,6 @@
 {
-  "$id": "https://nutshellengineering.github.io/schemas/achievements/v1.0/schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutshellengineering.github.io/schemas/achievements/v1.0/schema.json",
   "title": "Achievements",
   "description": "Schema for achievement definition files stored in S3.",
   "type": "object",
