@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutshellengineering.github.io/schemas/achievements/v2.1/schema.json",
+  "title": "Achievement Definitions",
+  "Description": "Schema for achievement definition files stored in S3.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "achievements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "theme": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "string"
+          },
+          "trigger": {
+            "type": "string"
+          },
+          "fact": {
+            "type": "string"
+          },
+          "rule": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "restriction": {
+            "type": "string"
+          },
+          "group": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "order": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "order"
+            ]
+          },
+          "repeatable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "theme",
+          "trigger",
+          "fact",
+          "rule",
+          "restriction",
+          "repeatable"
+        ]
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "achievements"
+  ]
+}
