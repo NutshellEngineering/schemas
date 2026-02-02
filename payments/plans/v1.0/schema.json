@@ -8,9 +8,9 @@
     "plans"
   ],
   "properties": {
-    "version": {
+    "$schema": {
       "type": "string",
-      "const": "v1"
+      "format": "uri"
     },
     "plans": {
       "type": "array",
