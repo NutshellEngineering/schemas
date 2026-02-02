@@ -1,11 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://nutshellengineering.github.io/schemas/payments/plans/v1/schema.json",
-  "title": "Payments Plans Catalog v1",
+  "title": "Payments Plans Catalog",
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "version",
     "plans"
   ],
   "properties": {
