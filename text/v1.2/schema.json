@@ -98,9 +98,9 @@
           "pattern": "^[0-9]{13}$",
           "description": "13-digit ISBN identifier"
         },
-        "chapters": {
+        "units": {
           "type": "number",
-          "description": "The number of chapters in the text."
+          "description": "The number of structural units in the text."
         },
         "content-warnings": {
           "type": "array",
@@ -222,7 +222,7 @@
           "minLength": 1,
           "description": "Markdown-formatted content with double newline paragraph separation, 500-800 words, no links allowed"
         },
-        "chapter": {
+        "units": {
           "type": "array",
           "items": {
             "type": "object",
@@ -231,11 +231,11 @@
             "properties": {
               "number": {
                 "type": "number",
-                "description": "Optional chapter number"
+                "description": "Optional unit number"
               },
               "type": {
                 "type": "string",
-                "enum": ["chapter", "prologue", "introduction", "epilogue", "conclusion", "forward", "afterword", "act"],
+                "enum": ["chapter", "prologue", "introduction", "epilogue", "conclusion", "foreword", "afterword", "act", "section"],
                 "description": "Type of chapter or section"
               }
             }
