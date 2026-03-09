@@ -42,7 +42,8 @@
           "type": "string",
           "enum": [
             "PUBLIC",
-            "TIER_1"
+            "TIER_1",
+            "VIP"
           ]
         },
         "stripe-price-id": {
@@ -58,7 +59,8 @@
           "type": "string",
           "enum": [
             "month",
-            "year"
+            "year",
+            "lifetime"
           ]
         },
         "amount-display": {
