@@ -58,6 +58,7 @@
         "interval": {
           "type": "string",
           "enum": [
+            "week",
             "month",
             "year",
             "lifetime"
