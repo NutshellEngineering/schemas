@@ -113,6 +113,24 @@
               "$ref": "#/definitions/Category"
             },
             "description": "Content warnings from categories/content-warning.json (for books 1900+)"
+          },
+          "icon": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "collection"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Icon name"
+              },
+              "collection": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Icon collection name"
+              }
+            },
+            "description": "Icon for the text"
           }
         },
         "required": [
